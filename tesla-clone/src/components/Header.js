@@ -1,13 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled from "styled-components"
 import CloseSharpIcon from '@material-ui/icons/CloseSharp';
-function header() {
+function Header() {
+    const [showSideBar, setShowSideBar] = useState(false);
     return (
         <div>
             <Container>
                 <Logo>
                     <a href="#" className="logo">
-                        <img src="/images/Log.svg"/>
+                        <img src="/images/Log.svg" alt="logo"/>
                     </a>
                 </Logo>
                 <Menu>
@@ -21,11 +22,11 @@ function header() {
                 <RightMenu>
                     <a href="#" >Shop</a>
                     <a href="#" >Account</a>
-                    <a href="#" >Menu</a>
+                    <button className="btnMenu" onClick={() => setShowSideBar(true)}>Menu</button>
                 </RightMenu>
-                <Sidebar>
+                <Sidebar show={showSideBar}>
                     <CloseIconWrapper>
-                        <CustomClose/>
+                        <CustomClose onClick={() => setShowSideBar(false)}/>
                     </CloseIconWrapper>
                     <li><a href="#">Existing Inventory</a></li>
                     <li><a href="#">Used Inventory</a></li>
@@ -40,7 +41,7 @@ function header() {
     )
 }
 
-export default header
+export default Header
 
 const Container = styled.div`
     min-height : 60px;
@@ -86,6 +87,14 @@ const RightMenu = styled.div`
         margin-right: 10px;
         align-items:center;
     }
+    .btnMenu{
+        border:none;
+        background-color:transparent;
+        font-weight:600;
+        font-size:16px;
+        color: #393c41;
+        cursor:pointer;
+    }
 `
 const Sidebar = styled.div`
     position: fixed;
@@ -99,6 +108,8 @@ const Sidebar = styled.div`
     display:flex;
     flex-direction:column;
     text-align:start;
+    transform: ${props => props.show ? 'translateX(0)': 'translateX(100%)'};
+    transition: transform 0.2s;
     li{
         padding: 10px 0px;
 
