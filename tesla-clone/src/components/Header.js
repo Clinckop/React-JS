@@ -86,6 +86,7 @@ const RightMenu = styled.div`
         font-weight: 600;
         margin-right: 10px;
         align-items:center;
+        padding-right:10px;
     }
     .btnMenu{
         border:none;
