@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Route,Switch} from 'react-router-dom';
 import React from 'react';
 import './App.css';
 import Header from './components/Header'
@@ -9,10 +9,13 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Routes>
-          <Route exact path="/" element={<Home/>} />
-          <Route exact path="/shop" element={<Shop/>} />
-        </Routes>
+          <Switch>
+            <Route path="/"> 
+              <Home/>
+            </Route>
+          </Switch>
+          {/* <Route exact path="/" element={<Home/>} />
+          <Route exact path="/shop" element={<Shop/>} /> */}
       </Router>
     </div>
   );
